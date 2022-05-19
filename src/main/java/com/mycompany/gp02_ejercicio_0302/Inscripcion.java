@@ -21,7 +21,8 @@ import javax.swing.JTextField;
  *
  * @author PC-1
  */
-public class Inscripcion extends JFrame{
+public class Inscripcion extends JFrame {
+
     private JPanel jPanel;
     private List<JLabel> jLabelList;
     private List<JTextField> jTextFieldList;
@@ -29,28 +30,29 @@ public class Inscripcion extends JFrame{
     private List<JButton> jButtonList;
     private List<JCheckBox> jCheckboxList;
     private List<JComboBox> JComboBox;
-
+    
     public Inscripcion(String title) throws HeadlessException {
         super(title);
-        this.setSize(500,600);
+        this.setSize(400, 300);
         this.setLocation(30, 30);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.iniciarComponentes();
         this.setContentPane(this.jPanel);
     }
     
-    public void iniciarComponentes(){
+    public void iniciarComponentes() {
         this.jPanel = new JPanel();
         this.jPanel.setBackground(Color.RED);
-        this.jPanel.setLayout(new GridLayout(4,1));
+        this.jPanel.setLayout(new GridLayout(4, 1));
         this.iniciarPaneles();
         this.iniciarEtiquetas();
-        this.iniciarTextos();
-        
+        this.iniciarCombo();
+        this.iniciarTexto();
+        this.iniciarBoton();
         
     }
     
-    public void iniciarPaneles(){
+    public void iniciarPaneles() {
         this.jPanelList = new ArrayList<>();
         this.jPanelList.add(new JPanel());
         this.jPanelList.add(new JPanel());
@@ -62,7 +64,8 @@ public class Inscripcion extends JFrame{
         this.jPanel.add(this.jPanelList.get(2));
         this.jPanel.add(this.jPanelList.get(3));
     }
-    public void iniciarEtiquetas(){
+
+    public void iniciarEtiquetas() {
         this.jLabelList = new ArrayList<>();
         this.jLabelList.add(new JLabel("Selecione una Sede: "));
         this.jLabelList.add(new JLabel("Tipo documento: "));
@@ -72,21 +75,37 @@ public class Inscripcion extends JFrame{
         this.jPanelList.get(1).add(this.jLabelList.get(1));
         this.jPanelList.get(2).add(this.jLabelList.get(2));
     }
-    public void iniciarCombo(){
-        this.JComboBox = new ArrayList<>();
+
+    public void iniciarCombo() {
+        JComboBox combo1 = new JComboBox();
+        combo1.addItem("Selecione una opción");
+        combo1.addItem("Matriz Cuenca");
+        combo1.addItem("Matriz Guayaquil");
+        combo1.addItem("Matriz Quito");
+        this.jPanelList.get(0).add(combo1);
+        combo1.setEnabled(true);
+        
+        JComboBox combo2 = new JComboBox();
+        combo2.addItem("Selecione una opción");
+        combo2.addItem("Cedula");
+        combo2.addItem("Pasaporte");
+        
+        this.jPanelList.get(1).add(combo2);
+        combo1.setEnabled(true);
         
     }
-    
-    public void iniciarTextos(){
-        this.jTextFieldList = new ArrayList<>();
-        this.jTextFieldList.add(new JTextField());
-        
-        this.jTextFieldList.get(2).setColumns(30);
-        
-        this.jPanelList.get(2).add(this.jTextFieldList.get(2));
+
+    public void iniciarTexto() {
+        JTextField texto = new JTextField(20);
+        this.jPanelList.get(2).add(texto);            
+        texto.setEnabled(true);
     }
     
-    
-    
+    public void iniciarBoton(){
+        JButton boton = new JButton();
+        boton.setText("Ingresar");
+        this.jPanelList.get(3).add(boton);
+        boton.setEnabled(true);
+    }
     
 }
